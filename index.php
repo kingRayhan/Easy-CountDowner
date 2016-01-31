@@ -39,17 +39,17 @@ function easy_countDowner_file(){
 	
 	 
 	//----------------------------------------------
-	//	Include king Countdowner css file
+	//	Include Easy Countdowner css file
 	//----------------------------------------------
-	wp_register_style( 'king-countdowner', plugin_dir_url(__FILE__).'assets/TimeCircles.css', '', '1.0', 'all' );
-	wp_enqueue_style('king-countdowner');
+	wp_register_style( 'Easy-countDowner', plugin_dir_url(__FILE__).'assets/TimeCircles.css', '', '1.0', 'all' );
+	wp_enqueue_style('Easy-countDowner');
 	
 	
 	//----------------------------------------------
-	//	Include king Countdowner javascript file
+	//	Include Easy CountDowner javascript file
 	//----------------------------------------------
 	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'king-countdowner-js',  plugin_dir_url(__FILE__).'assets/TimeCircles.js', array('jquery'), '1.0', false );
+	wp_enqueue_script( 'Easy-countDowner-js',  plugin_dir_url(__FILE__).'assets/TimeCircles.js', array('jquery'), '1.0', false );
 	
 }
 add_action('wp_enqueue_scripts','easy_countDowner_file');
@@ -127,15 +127,15 @@ function easy_countDowner_shortcode($atts,$content){
 				}
 			}
 		});
-		<?php $countdowner_id++; ?>
 	</script>
 	
-<?php
-	$var_ = ob_get_clean();
-	return $var_;
+<?php 
+	return ob_get_clean();
 }
 add_shortcode('easy_countdowner','easy_countDowner_shortcode');
+//=========================================
 // Support shortcode in Text Widget
+//=========================================
 add_filter('widget_text', 'do_shortcode');
 
 
