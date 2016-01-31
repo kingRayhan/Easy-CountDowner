@@ -1,7 +1,7 @@
 <div align="center">
 	<img src="https://i.imgsafe.org/d3bf919.png" alt="">
 </div>
-A countDown plugin for wordpress which is works through shortcode!
+A countDown plugin for wordpress which is works through shortcode !
 Easy Countdowner allows you to display a countdown on your post or page. The easiest way to place your full customizable HTML5 Countdown Timer. Just click on the countDowner button at tinyMce editor , provide settings information and click ok.
 
 ### List of features:
