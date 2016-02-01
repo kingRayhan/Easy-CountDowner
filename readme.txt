@@ -1,6 +1,6 @@
 === Easy CountDowner ===
 Contributors: kingrayhan
-Tags: CountDown,count Down,Countdowner,countdowner,count,easy-countdowner,easy-count-downer,EasyCountDowner
+Tags: countDown,count Down,Countdowner,countdowner,count,easy-countdowner,easy-count-downer,EasyCountDowner
 Requires at least: 4.0
 Tested up to: 4.4.0
 Stable tag: 1.0.5
