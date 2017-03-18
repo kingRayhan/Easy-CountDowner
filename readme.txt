@@ -1,9 +1,9 @@
 === Easy CountDowner ===
 Contributors: kingrayhan
-Tags: countDown,count Down,Countdowner,countdowner,count,easy-countdowner,easy-count-downer,EasyCountDowner
+Tags: CountDown,count Down,Countdowner,countdowner,count,easy-countdowner,easy-count-downer,EasyCountDowner
 Requires at least: 4.0
-Tested up to: 4.4.0
-Stable tag: 1.0.5
+Tested up to: 4.7.3
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,7 @@ Easy Countdowner allows you to display a countdown on your post or page. The eas
 * iPad Safari 	:)
 * PC ie7		:S
 
-> [Demos and Documentation ](http://plugin.rayhan.info/easy-countdowner/)
+> [Demos and Documentation ](http://rayhan.info/plugins/easy-countdowner/)
 
 == Installation ==
 

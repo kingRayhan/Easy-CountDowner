@@ -10,7 +10,7 @@
 							{
 								type: 'textbox',
 								name: 'easy_countdowner_name',
-								label: 'CountDowner End Date',
+								label: 'CountDowner Unique Name',
 								placeholder: 'CountDowner End Date',
 								value: 'demo_countdowner'
 							},

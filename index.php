@@ -5,7 +5,7 @@
  * Plugin URI: plugin.rayhan.info
  * Author: Rayhan
  * Author URI: https://www.facebook.com/rayhan095
- * Version: 1.0.5
+ * Version: 1.0.8
  * License: GPL2
  *
  */
@@ -39,17 +39,17 @@ function easy_countDowner_file(){
 	
 	 
 	//----------------------------------------------
-	//	Include Easy Countdowner css file
+	//	Include king Countdowner css file
 	//----------------------------------------------
-	wp_register_style( 'Easy-countDowner', plugin_dir_url(__FILE__).'assets/TimeCircles.css', '', '1.0', 'all' );
-	wp_enqueue_style('Easy-countDowner');
+	wp_register_style( 'king-countdowner', plugin_dir_url(__FILE__).'assets/TimeCircles.css', '', '1.0', 'all' );
+	wp_enqueue_style('king-countdowner');
 	
 	
 	//----------------------------------------------
-	//	Include Easy CountDowner javascript file
+	//	Include king Countdowner javascript file
 	//----------------------------------------------
 	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'Easy-countDowner-js',  plugin_dir_url(__FILE__).'assets/TimeCircles.js', array('jquery'), '1.0', false );
+	wp_enqueue_script( 'king-countdowner-js',  plugin_dir_url(__FILE__).'assets/TimeCircles.js', array('jquery'), '1.0', false );
 	
 }
 add_action('wp_enqueue_scripts','easy_countDowner_file');
@@ -129,13 +129,11 @@ function easy_countDowner_shortcode($atts,$content){
 		});
 	</script>
 	
-<?php 
+<?php
 	return ob_get_clean();
 }
 add_shortcode('easy_countdowner','easy_countDowner_shortcode');
-//=========================================
 // Support shortcode in Text Widget
-//=========================================
 add_filter('widget_text', 'do_shortcode');
 
 
