@@ -2,16 +2,16 @@
 /**
  * Plugin Name: Easy CountDowner
  * Description: An awesome countdown shortcode plugin. Just click on the countDowner button at tinyMce editor , provide settings information and click ok.
- * Plugin URI: plugin.rayhan.info
+ * Plugin URI: http://rayhan.info/plugins
  * Author: Rayhan
  * Author URI: https://www.facebook.com/rayhan095
- * Version: 1.0.8
+ * Version: 2.0.0
  * License: GPL2
  *
  */
 
 /**
- * Copyright (c) 2015 | rayhan095@gmail.com | All rights reserved.
+ * Copyright (c) 2017 | rayhan095@gmail.com | All rights reserved.
  *
  * Released under the GPL license
  * http://www.opensource.org/licenses/gpl-license.php
@@ -35,9 +35,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * **********************************************************************
  */
+
+
+/**
+ * CountDowner Assets files
+ */
 function easy_countDowner_file(){
-	
-	 
 	//----------------------------------------------
 	//	Include king Countdowner css file
 	//----------------------------------------------
@@ -54,117 +57,25 @@ function easy_countDowner_file(){
 }
 add_action('wp_enqueue_scripts','easy_countDowner_file');
 
+/**
+ * CountDowner admin Assets files
+ */
+function easyCountDownerAdmin() {
 
-function easy_countDowner_shortcode($atts,$content){
-	ob_start();
-	
-		$easy_countDowner =shortcode_atts(array(
-			'name' => '',
-			'animation' => 'smooth',
-			'end_date' => '',
-			'end_time' => '00:00:00',
-			'circle_bg_color' => '#E2E2E2',
-			
-			//themes
-			'theme' => 'default',
-			
-			
-			'day_label' => 'Days',
-			'day_color' => '#60686F',
-			'show_day' => true,
-			
-			'hour_label' => 'Hours',
-			'hour_color' => '#60686F',
-			'show_hour' => true,
-			
-			'minute_label' => 'Minutes',
-			'minute_color' => '#60686F',
-			'show_minute' => true,
-			
-			'second_label' => 'Seconds',
-			'second_color' => '#60686F',
-			'show_second' => true
-		),$atts);
-		
-	?>
-	
-	<div id="<?php echo $easy_countDowner['name']; ?>" style="width: 100%;" data-date="<?php echo $easy_countDowner['end_date'] ?> <?php echo $easy_countDowner['end_time'] ?>"></div>
-	
-	<script type="text/javascript">
-		jQuery("#<?php echo $easy_countDowner['name']; ?>").TimeCircles({
-			"animation": "<?php echo $easy_countDowner['animation'] ?>",
-			<?php if( $easy_countDowner['theme'] == 'default' ){ ?>
-				"bg_width": 0.2,
-				"fg_width": 0.043333333333333335,
-			<?php }elseif( $easy_countDowner['theme'] == 'fat' ){ ?>
-				    "bg_width": 1.7,
-					"fg_width": 0.09333333333333334,
-			<?php }elseif( $easy_countDowner['theme'] == 'thick' ){ ?>
-					"bg_width": 1.5,
-					"fg_width": 0.04666666666666667,
-			<?php } ?>
-			"circle_bg_color": "<?php echo $easy_countDowner['circle_bg_color'] ?>",
-			"time": {
-				"Days": {
-					"text": "<?php echo $easy_countDowner['day_label'] ?>",
-					"color": "<?php echo $easy_countDowner['day_color'] ?>",
-					"show": <?php echo $easy_countDowner['show_day'] ?>
-				},
-				"Hours": {
-					"text": "<?php echo $easy_countDowner['hour_label'] ?>",
-					"color": "<?php echo $easy_countDowner['hour_color'] ?>",
-					"show": <?php echo $easy_countDowner['show_hour'] ?>
-				},
-				"Minutes": {
-					"text": "<?php echo $easy_countDowner['minute_label'] ?>",
-					"color": "<?php echo $easy_countDowner['minute_color'] ?>",
-					"show": <?php echo $easy_countDowner['show_minute'] ?>
-				},
-				"Seconds": {
-					"text": "<?php echo $easy_countDowner['second_label'] ?>",
-					"color": "<?php echo $easy_countDowner['second_color'] ?>",
-					"show": <?php echo $easy_countDowner['show_second'] ?>
-				}
-			}
-		});
-	</script>
-	
-<?php
-	return ob_get_clean();
+wp_enqueue_style( 'easyCountDownerAdmin', plugin_dir_url(__FILE__).'assets/easyCountDowner-admin.css', '', '1.0', 'all' );
+
+wp_enqueue_script( 'easyCountDownerAdmin-js',  plugin_dir_url(__FILE__) .'assets/easyCountDowner-admin.js',  array( 'jquery' ), '1.0.0', true );
 }
-add_shortcode('easy_countdowner','easy_countDowner_shortcode');
+add_action( 'admin_enqueue_scripts', 'easyCountDownerAdmin' );
+
+
+
+require_once dirname(__FILE__) . '/easyCountdownerShortcode.php';
+
+
 // Support shortcode in Text Widget
 add_filter('widget_text', 'do_shortcode');
 
 
-
-// Hooks your functions into the correct filters
-function my_add_mce_button() {
-	// check user permissions
-	if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
-		return;
-	}
-	// check if WYSIWYG is enabled
-	if ( 'true' == get_user_option( 'rich_editing' ) ) {
-		add_filter( 'mce_external_plugins', 'my_add_tinymce_plugin' );
-		add_filter( 'mce_buttons', 'my_register_mce_button' );
-	}
-}
-add_action('admin_head', 'my_add_mce_button');
-
-// Declare script for new button
-function my_add_tinymce_plugin( $plugin_array ) {
-	$plugin_array['my_mce_button'] = plugin_dir_url(__FILE__).'assets/shortcode_generator.js';
-	return $plugin_array;
-}
-
-// Register new button in the editor
-function my_register_mce_button( $buttons ) {
-	array_push( $buttons, 'my_mce_button' );
-	return $buttons;
-}
-
-function easy_countDowner_shortcodes_mce_css() {
-	wp_enqueue_style('symple_shortcodes-tc', plugins_url('/assets/shortcode-generate_icon.css', __FILE__) );
-}
-add_action( 'admin_enqueue_scripts', 'easy_countDowner_shortcodes_mce_css' );
+require_once plugin_dir_path( __FILE__ ) .'cf-pro/classes/setup.class.php';
+require_once plugin_dir_path( __FILE__ ) .'EasyCountDowner-shortcode-generator.php';
